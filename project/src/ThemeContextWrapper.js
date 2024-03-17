@@ -9,7 +9,7 @@ export const ThemeContext = createContext();
 
 export default function ThemeContextWrapper({ children }) {
   // Manage visual state (light and dark mode)
-  const [mode, setMode] = useState("light");
+  const [mode, setMode] = useState("dark");
 
   const toggleMode = () => {
     setMode(mode === "light" ? "dark" : "light");
