@@ -3,6 +3,7 @@ import Container from "@mui/material/Container";
 import AppBar from "@mui/material/AppBar";
 import ToolBar from "@mui/material/Toolbar";
 import Box from "@mui/material/Box";
+import ThemeToggleButton from "./themeToggle";
 
 export default function NavigationBar() {
   return (
@@ -41,7 +42,9 @@ export default function NavigationBar() {
         >
           <Box>Thing 1</Box>
           <Box>Thing 2</Box>
-          <Box>Thing 3</Box>
+          <Box>
+            <ThemeToggleButton />
+          </Box>
         </ToolBar>
       </Container>
     </AppBar>
