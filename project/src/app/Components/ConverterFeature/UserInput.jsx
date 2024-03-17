@@ -22,7 +22,42 @@ const byteMap = new Map([
 ]);
 
 export default function UserInput() {
+  const binaryIndexToPowerOfTwo = new Map([
+    [7, 1],
+    [6, 2],
+    [5, 4],
+    [4, 8],
+    [3, 16],
+    [2, 32],
+    [1, 64],
+    [0, 128],
+  ]);
   const [byteValue, setByteValue] = useState(byteMap);
+  const [decimalValue, setDecimalValue] = useState(0);
+
+  const updateByte = (key, value) => {
+    const newValue = value !== "1" ? false : true;
+    setByteValue(new Map([...byteValue, [key, newValue]]));
+  };
+
+  useEffect(() => {
+    console.log("running");
+    // create a sum starting at 0
+    //For each key in the byteValue map, access the correspoding key in the bindaryINdex to power of two.
+    // If the value in byteValue map is false, do nothing
+    // if the value in byteValue map is true, add the value of the binaryIndex to the sum.
+    // After iterating through the entire byteValuemap, set decimalValue to the value of sum.
+
+    let sum = 0;
+
+    byteValue.forEach((value, key) => {
+      if (value) {
+        const digitValue = binaryIndexToPowerOfTwo.get(key);
+        sum += digitValue;
+      }
+    });
+    setDecimalValue(sum);
+  }, [byteValue]);
 
   return (
     <Container maxWidth="md">
@@ -63,15 +98,15 @@ export default function UserInput() {
             direction={"row"}
             sx={{ width: "100%", flexWrap: "nowrap", justifyContent: "center" }}
           >
-            <BinaryInputField index={0} />
-            <BinaryInputField index={1} />
-            <BinaryInputField index={2} />
-            <BinaryInputField index={3} />
-            <BinaryInputField index={4} />
-            <BinaryInputField index={5} />
-            <BinaryInputField index={6} />
-            <BinaryInputField index={7} />
+            {Array.from(byteValue, ([key, value]) => (
+              <BinaryInputField
+                onInputChange={updateByte}
+                index={key}
+                key={key}
+              />
+            ))}
           </Stack>
+          <Typography variant="h5">{decimalValue}</Typography>
         </Box>
       </Paper>
     </Container>
