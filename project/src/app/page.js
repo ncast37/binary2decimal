@@ -3,6 +3,7 @@ import Container from "@mui/material/Container";
 import NaviationBar from "./Components/Navigation/NavigationBar";
 import Box from "@mui/material/Box";
 import Hero from "./Components/ConverterFeature/Hero";
+import UserInput from "./Components/ConverterFeature/UserInput";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
     >
       <NaviationBar />
       <Hero />
+      <UserInput />
     </Box>
   );
 }
